@@ -3,7 +3,7 @@
   command = "npm run build"        # Command to build the React app
 
 [build.environment]
-  PYTHON_VERSION = "3.8"           # Specify the Python version for serverless functions
+  PYTHON_VERSION = "3.9"           # Specify the Python version for serverless functions
 
 [context.production.environment]
   FLASK_ENV = "production"         # Flask environment configuration (if needed)
