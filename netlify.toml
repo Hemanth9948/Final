@@ -1,0 +1,9 @@
+[build]
+  functions = "netlify-functions"  # Directory where your serverless functions reside
+  command = "npm run build"        # Command to build the React app
+
+[build.environment]
+  PYTHON_VERSION = "3.8"           # Specify the Python version for serverless functions
+
+[context.production.environment]
+  FLASK_ENV = "production"         # Flask environment configuration (if needed)
