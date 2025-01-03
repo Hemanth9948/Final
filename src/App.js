@@ -23,19 +23,28 @@ function App() {
     setInputText(e.target.value);
   };
 
+  
   const handleSummarizeClick = async () => {
-    // Send the input text to the Flask backend
-    const response = await fetch('/.netlify/functions/summarizer/summarize', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ inputText }),
-    });
-
-    const data = await response.json();
-    setT5Summary(data.t5_summary);
+    try {
+      const response = await fetch('/.netlify-functions/summarizer/summarize', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ inputText }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();  // Assuming the backend returns a JSON
+        setT5Summary(data.t5_summary);
+      } else {
+        console.error('Server responded with an error:', response.status);
+      }
+    } catch (error) {
+      console.error('Failed to fetch or parse JSON:', error);
+    }
   };
+  
 
   useEffect(() => {
     const handleScroll = () => {
